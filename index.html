@@ -144,26 +144,31 @@ The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for t
 
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const sidebar = document.getElementById("sidebar");
-            const events = document.getElementById("events");
-
-            function adjustSidebar() {
-                let sidebarHeight = sidebar.offsetHeight;
-                let eventsHeight = events.offsetHeight;
-                let scrollY = window.scrollY;
-                let containerTop = events.offsetTop;
-                let containerBottom = containerTop + eventsHeight;
-
-                if (scrollY + sidebarHeight + 20 >= containerBottom) {
-                    sidebar.style.top = (containerBottom - sidebarHeight - scrollY) + "px";
-                } else {
-                   sidebar.style.top = "20px";
+       document.addEventListener("DOMContentLoaded", function () {
+                const sidebar = document.getElementById("sidebar");
+                const events = document.getElementById("events");
+            
+                function adjustSidebar() {
+                    let sidebarHeight = sidebar.offsetHeight;
+                    let eventsHeight = events.offsetHeight;
+                    let scrollY = window.scrollY;
+                    let containerTop = events.offsetTop;
+                    let containerBottom = containerTop + eventsHeight;
+            
+                    if (scrollY + sidebarHeight + 20 >= containerBottom) {
+                        sidebar.style.top = (containerBottom - sidebarHeight - scrollY) + "px";
+                        sidebar.classList.remove("sticky");
+                    } else {
+                        sidebar.style.top = "20px";
+                        sidebar.classList.add("sticky");
+                    }
                 }
-
-            window.addEventListener("scroll", adjustSidebar);
-        });
-    </script>
+            
+                window.addEventListener("scroll", adjustSidebar);
+                adjustSidebar(); // Initial call to set the position and class on load
+            });
+            
+        </script>
 
 </body>
 </html>
